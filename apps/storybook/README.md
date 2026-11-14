@@ -2,8 +2,9 @@
 
 The preview app for `@ds/react`. Workspace package name: `storybook-web`.
 
-It is in the install graph and ships with **zero stories**, because the library has zero components.
-`.storybook/` holds the whole configuration; this app contains no stories of its own.
+`.storybook/` holds the whole configuration; this app contains no stories of its own. The library
+has one story per component, each showing the component assembled with placeholder content and no
+styles.
 
 ## Running it
 
