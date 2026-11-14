@@ -1,0 +1,113 @@
+name: verify
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+# Least privilege: nothing here writes to the repo.
+permissions:
+  contents: read
+
+# A newer push supersedes an in-flight run on the same ref.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      # No `version:` here on purpose — `packageManager` in package.json pins pnpm, and
+      # specifying it in both places fails with ERR_PNPM_BAD_PM_VERSION.
+      - uses: pnpm/action-setup@v6
+
+      # Node version comes from .nvmrc, so CI and a contributor's shell cannot disagree.
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # ---- gates: a non-zero exit reddens the build -----------------------------------
+      #
+      # Each of these catches something whose breach produces NO error anywhere else. That is
+      # the whole reason they are here rather than only in `pnpm verify`: a rule enforced only
+      # by `verify` is enforced on whichever machine happens to run it.
+
+      - run: pnpm format:check
+
+      # Dead code in plain .mjs/.js, which no typechecker reads.
+      - run: pnpm lint
+
+      - run: pnpm typecheck
+
+      # The index is derived from the records. Forget to regenerate it and the record becomes
+      # invisible — nobody browses a directory listing — while every other tool stays green.
+      - run: pnpm adr-index:check
+
+      # Same failure for design records, plus one more: a record that drops its Checks or its
+      # "In this system" section still renders, but can no longer be reviewed against or traced.
+      - run: pnpm design-index:check
+
+      # This repo points instead of restating, so its characteristic defect is a pointer that
+      # resolves to nothing: a moved file, a deleted skill, a `pnpm` script that was never
+      # added. Docs still render, the build still passes, the reader lands on nothing.
+      - run: pnpm verify:docs
+
+      # .figma/ is read by no build step, so a malformed entry is invisible until someone
+      # trusts it. An unmapped collection claiming a code path is the specific lie to catch.
+      - run: pnpm verify:figma
+
+      # Runs `build` in every package that defines one. A no-op until one does.
+      - run: pnpm build
+
+      - run: pnpm test
+
+      # The preview app has to keep building as components and stories land.
+      - run: pnpm build:storybook
+
+  # ---------------------------------------------------------------------------------------
+  # `pnpm init-ds <name>` runs once per project, which means in normal use it is never exercised
+  # again — exactly the shape of thing that rots silently. This job runs it on a clean checkout
+  # and asserts the renamed repo is still green.
+  #
+  # The matrix covers a name about as short as the default `ds` and a much longer one, because
+  # renaming changes string widths inside markdown tables and Prettier's column alignment is
+  # width-dependent.
+  #
+  # Remove this job once the repo has been branded: init-ds refuses to run a second time.
+  init-ds:
+    name: init-ds (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        name: [kit, acmedesignsystem]
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: rename
+        run: pnpm init-ds ${{ matrix.name }}
+
+      # The scope moved, so the workspace links have to be re-resolved. No --frozen-lockfile:
+      # the lockfile legitimately changes here, and that is the point of the step.
+      - run: pnpm install --no-frozen-lockfile
+
+      - name: the renamed repo must still be green
+        run: pnpm verify
+
+      # A half-rename is the failure this whole codemod exists to prevent, and it produces no
+      # build error — so assert directly that nothing kept the old prefix.
+      - name: no stragglers left behind
+        run: pnpm init-ds --check

@@ -1,0 +1,10 @@
+node_modules
+pnpm-lock.yaml
+packages/*/dist
+packages/*/build
+apps/*/dist
+apps/storybook/storybook-static
+
+# Machine-local and git-ignored — written by the agent harness, never committed. Checking it
+# would make `pnpm verify` go red on a file that is not part of the repo.
+.claude/settings.local.json

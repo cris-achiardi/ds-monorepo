@@ -1,0 +1,14 @@
+node_modules/
+dist/
+build/
+storybook-static/
+.vite/
+*.tsbuildinfo
+
+.DS_Store
+Thumbs.db
+.env
+.env.local
+
+# Machine-local agent settings. Never committed.
+.claude/settings.local.json

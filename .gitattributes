@@ -1,0 +1,5 @@
+# LF in the working tree on every platform, so generated regions and formatting checks compare
+# equal on Windows, macOS and CI.
+* text=auto eol=lf
+
+pnpm-lock.yaml -diff linguist-generated=true

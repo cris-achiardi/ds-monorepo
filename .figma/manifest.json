@@ -1,0 +1,60 @@
+{
+  "_schema": "1.0",
+  "_doc": "Project anchor for this design system's Figma integration. Single source of truth for which Figma file we read from. Maps in maps/*.json resolve their `source` keys against this file. Never hard-code a file key in a script or a skill — read it from here, so pointing the system at a different file is one edit.",
+  "lastUpdated": "2026-11-14",
+  "bridges": {
+    "_doc": "TWO bridges, recorded separately. Nothing in `pnpm verify` or CI depends on either, so the repo is green on a machine with no Figma tooling installed. Code stays canonical for token values in both directions; a difference is drift in Figma, never a change to adopt back.",
+    "read": {
+      "_doc": "The official Figma MCP connector. No daemon, no plugin, no Figma Desktop.",
+      "kind": "figma-mcp",
+      "direction": "read",
+      "requires": [],
+      "tools": ["get_metadata", "get_variable_defs", "get_design_context", "get_screenshot"],
+      "usedBy": []
+    },
+    "write": {
+      "_doc": "figma-console MCP driving the Desktop Bridge plugin. OPT-IN and unwired: no script, gate or skill in this repo invokes it. Every write must first compare `figma.fileKey` against sources.<key>.key and pin the target with `figma_navigate({ url, lock: true })`.",
+      "kind": "figma-console-mcp",
+      "direction": "write",
+      "requires": [
+        "Figma Desktop running",
+        "Desktop Bridge plugin open in the target file",
+        "local figma-console MCP server"
+      ],
+      "usedBy": [],
+      "gated": false
+    }
+  },
+  "sources": {
+    "main": {
+      "_doc": "NOT LINKED YET. `key: null` records that no design file has been chosen — fill key, name and url when one is. The source key `main` is what maps/*.json point at.",
+      "key": null,
+      "name": null,
+      "url": null,
+      "purpose": "The design source for this system.",
+      "published": false,
+      "libraryKey": null,
+      "data": []
+    }
+  },
+  "identity": {
+    "_doc": "The package scope and the CSS / data-attribute prefixes live in /ds.config.json and are not repeated here.",
+    "variableNaming": {
+      "_doc": "How a Figma variable name maps to a token. NOT MEASURED: no file is linked and no token system exists. Fill from a live read, never from an assumption.",
+      "separatorUnknown": true,
+      "observed": [],
+      "knownProblems": []
+    },
+    "variableCollections": {
+      "_doc": "Figma collection -> canonical token source file under packages/tokens/. EMPTY: filled by hand from a live read, once the token set is decided. A Figma variable whose collection has no entry here resolves to `code: null` in maps/tokens.json and is reported as drift."
+    },
+    "codePathConvention": {
+      "_doc": "Where a Figma component's code counterpart lives. UNDECIDED until packages/react has a folder layout.",
+      "pattern": null
+    }
+  },
+  "maps": {
+    "tokens": "maps/tokens.json",
+    "components": "maps/components.json"
+  }
+}
