@@ -13,12 +13,15 @@ API of our own yet**: each module under `src/` is a pass-through.
 | React 18 and 19 are supported as peers                           | `package.json` → `peerDependencies`                                                             |
 | The package scope and the CSS / data-attribute prefixes          | `/ds.config.json` — never hard-code                                                             |
 | Stories sit beside their component                               | `apps/storybook/README.md`                                                                      |
+| The prop surface is a generated catalogue, checked in CI         | [ADR 0006](../../docs/ADR/0006-the-prop-surface-is-a-generated-catalogue-checked-in-ci.md)      |
 
 ## What is here
 
 ```
 src/<entry>/<Name>.ts            re-exports @base-ui/react/<entry>
 src/<entry>/<Name>.stories.tsx   the component assembled with placeholder content, unstyled
+src/<entry>/<Name>.props.json    GENERATED: every component and part of the module, with its props
+prop-catalogue.json              GENERATED: the index — which components take each prop
 src/index.ts                     the barrel: one line per module
 ```
 
@@ -76,6 +79,17 @@ Usage, parts and props are Base UI's. The reference for a module is the page of 
 the documentation bundled with the dependency, under `docs/react/components/` in the installed
 `@base-ui/react` package.
 
+### The prop catalogue
+
+`<Name>.props.json` and `prop-catalogue.json` are written by `pnpm prop-catalogue` from the types
+the barrel exports: for each prop its type, its documented default (`null` when none is documented)
+and whether it is required. Start at the index to find where a prop is used, then open one
+module's file. Never edit them by hand.
+
+`pnpm prop-catalogue:check` fails when they no longer match the types — after an upgrade of
+`@base-ui/react` or `typescript`, or an edit to a module. If the change is intended, regenerate and
+commit the result with it.
+
 Import components from `@ds/react`, not from `@base-ui/react`: the module is where a component will
 gain its styles, and a direct import bypasses it.
 
@@ -106,6 +120,7 @@ Each of these is open. Decide it when a component forces the question, and write
 ```bash
 pnpm typecheck        # tsc over this package and the Storybook config
 pnpm dev:storybook    # preview components
+pnpm prop-catalogue   # regenerate the prop catalogue
 ```
 
 There is no `build` script yet. `pnpm build` at the root runs each package's `build` if it has one,

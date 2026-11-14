@@ -50,6 +50,9 @@ token system is still to be made, and gets its own record here when it is.
 | [0003](./0003-the-library-re-exports-base-ui-entry-points-unchanged.md)                | `@ds/react` depends on `@base-ui/react` and re-exports each component entry point unchanged     | Draft    |
 | [0004](./0004-component-styles-are-written-as-css-modules.md)                          | Component styles are written as CSS Modules                                                     | Draft    |
 | [0005](./0005-one-folder-per-component-named-after-its-base-ui-entry-point.md)         | One folder per component, named after its Base UI entry point                                   | Draft    |
+| [0006](./0006-the-prop-surface-is-a-generated-catalogue-checked-in-ci.md)              | The prop surface of `@ds/react` is a generated catalogue, committed and checked in CI           | Draft    |
+| [0007](./0007-tokens-are-authored-as-dtcg-json-one-file-per-collection.md)             | Tokens are authored as DTCG 2025.10 JSON, one file per collection                               | Draft    |
+| [0008](./0008-two-token-tiers-semantic-colour-references-primitives.md)                | Two token tiers: semantic colour references primitives, and paths mirror the Figma names        | Draft    |
 
 <!-- adr-index:end -->
 

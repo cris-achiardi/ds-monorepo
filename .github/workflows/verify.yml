@@ -45,6 +45,11 @@ jobs:
 
       - run: pnpm typecheck
 
+      # The prop surface of the library is read from its types and committed. A dependency upgrade
+      # or a module edit that adds, removes or retypes a prop, or moves a default, typechecks and
+      # builds — this is the only step that turns it into a diff someone has to accept.
+      - run: pnpm prop-catalogue:check
+
       # The index is derived from the records. Forget to regenerate it and the record becomes
       # invisible — nobody browses a directory listing — while every other tool stays green.
       - run: pnpm adr-index:check

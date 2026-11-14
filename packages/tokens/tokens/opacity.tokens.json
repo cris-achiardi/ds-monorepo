@@ -1,0 +1,30 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "opacity": {
+    "0": {
+      "$value": 0
+    },
+    "8": {
+      "$value": 0.08
+    },
+    "16": {
+      "$value": 0.16
+    },
+    "32": {
+      "$value": 0.32
+    },
+    "48": {
+      "$value": 0.48
+    },
+    "64": {
+      "$value": 0.64
+    },
+    "80": {
+      "$value": 0.8
+    },
+    "100": {
+      "$value": 1
+    },
+    "$type": "number"
+  }
+}

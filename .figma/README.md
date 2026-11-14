@@ -2,9 +2,10 @@
 
 How this repo reads its design source, and what it has recorded so far.
 
-**The design file is linked, and nothing has been read from it yet.**
+**The design file is linked, and its variables have been read.**
 [`manifest.json`](./manifest.json) → `sources.main` holds its key, name and URL; everything else
-reads them from there. Both maps are still empty.
+reads them from there. [`maps/tokens.json`](./maps/tokens.json) records all 183 variables against
+their tokens; the component map is still empty.
 
 **Build isolation.** `.figma/` is development-time tooling only: it sits at the repo root outside
 every workspace package, no package source imports from it, and no build target reads it. Nothing
@@ -111,8 +112,12 @@ properties** — a finding about the file, worth stating plainly.
 | [`maps/tokens.json`](./maps/tokens.json)         | Figma variable → token path. `code: null` means drift.          |
 | [`maps/components.json`](./maps/components.json) | Code component → Figma node, plus the variant axes found there. |
 
-Both are **empty and schema-valid**. `pnpm verify:figma` validates them in CI, so an empty map is a
-checked state rather than an unchecked one.
+Both are schema-valid, and the component map is **empty**. `pnpm verify:figma` validates them in
+CI, so an empty map is a checked state rather than an unchecked one.
+
+The token map is keyed by `<collection>/<variable name>`, because this file repeats variable names
+across collections. The gate checks that a mapped collection's file exists; it does **not** check
+that each `code` path exists in that file, or that a value in Figma equals the token's.
 
 ## Conventions
 

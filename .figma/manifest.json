@@ -27,7 +27,7 @@
   },
   "sources": {
     "main": {
-      "_doc": "Linked on 2026-11-14. Nothing has been read from it yet: `data` is empty and both maps are empty. The source key `main` is what maps/*.json point at.",
+      "_doc": "Linked on 2026-11-14. Its variables were read on 2026-11-14 and are recorded in maps/tokens.json; no component has been read. The source key `main` is what maps/*.json point at.",
       "key": "4IXxagPAVz0QWGDlnBsfYr",
       "name": "ds-monorepo",
       "url": "https://www.figma.com/design/4IXxagPAVz0QWGDlnBsfYr/ds-monorepo",
@@ -40,13 +40,38 @@
   "identity": {
     "_doc": "The package scope and the CSS / data-attribute prefixes live in /ds.config.json and are not repeated here.",
     "variableNaming": {
-      "_doc": "How a Figma variable name maps to a token. NOT MEASURED: no file is linked and no token system exists. Fill from a live read, never from an assumption.",
-      "separatorUnknown": true,
-      "observed": [],
-      "knownProblems": []
+      "_doc": "How a Figma variable name maps to a token. Measured on 2026-11-14 from the plugin API (all 183 local variables, 11 collections). No variable has a code syntax set, so `name` is the only name there is.",
+      "separatorUnknown": false,
+      "separator": "/",
+      "rule": "Token path = the collection's root group, then the variable name lower-cased with `/` replaced by `.`. Colour collections share the root group `color`; every other collection's root group is its own name in kebab-case.",
+      "observed": [
+        "Blue/800 -> color.blue.800",
+        "accent/subtle-hover -> color.accent.subtle-hover",
+        "Spacing 16 -> spacing.16",
+        "Radius full -> radius.full"
+      ],
+      "knownProblems": [
+        "Variable names are not unique across collections: `16` exists in Spacing, Size, Font size and Line height. A variable is identified by collection + name, and maps/tokens.json is keyed that way.",
+        "Opacity variables hold a percentage (0-100); the tokens hold the same opacity as a 0-1 number. The values differ by a factor of 100 by design.",
+        "`bg/backdrop` is the one Color semantic variable that is a raw value rather than an alias, because an alias cannot carry alpha."
+      ]
     },
     "variableCollections": {
-      "_doc": "Figma collection -> canonical token source file under packages/tokens/. EMPTY: filled by hand from a live read, once the token set is decided. A Figma variable whose collection has no entry here resolves to `code: null` in maps/tokens.json and is reported as drift."
+      "_doc": "Figma collection -> canonical token source file under packages/tokens/tokens/. A Figma variable whose collection has no entry here resolves to `code: null` in maps/tokens.json and is reported as drift. Color semantic has two modes and so two files, one per mode.",
+      "Color primitives": "packages/tokens/tokens/color-primitives.tokens.json",
+      "Spacing": "packages/tokens/tokens/spacing.tokens.json",
+      "Size": "packages/tokens/tokens/size.tokens.json",
+      "Border width": "packages/tokens/tokens/border-width.tokens.json",
+      "Radius": "packages/tokens/tokens/radius.tokens.json",
+      "Opacity": "packages/tokens/tokens/opacity.tokens.json",
+      "Font size": "packages/tokens/tokens/font-size.tokens.json",
+      "Line height": "packages/tokens/tokens/line-height.tokens.json",
+      "Font weight": "packages/tokens/tokens/font-weight.tokens.json",
+      "Duration": "packages/tokens/tokens/duration.tokens.json",
+      "Color semantic": {
+        "Light": "packages/tokens/tokens/color-semantic.light.tokens.json",
+        "Dark": "packages/tokens/tokens/color-semantic.dark.tokens.json"
+      }
     },
     "codePathConvention": {
       "_doc": "Where a Figma component's code counterpart lives. UNDECIDED until packages/react has a folder layout.",

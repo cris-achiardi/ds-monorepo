@@ -2,7 +2,7 @@
 
 A design-system monorepo at an early state. Governance, documentation layers, Figma wiring, CI and
 tooling are in place. **The React library re-exports every Base UI component with no styles of its
-own, and the token system is empty and will be built from scratch.**
+own, and the tokens exist as source files that nothing builds or consumes yet.**
 
 Scaffolded from [`weave-ds-template`](https://github.com/cris-achiardi/weave-ds-template), without
 its contract engine and multi-framework backends.
@@ -28,7 +28,7 @@ pnpm install               # workspace links move with the scope
 |                      |                                                                               |
 | -------------------- | ----------------------------------------------------------------------------- |
 | `packages/react`     | `@ds/react` — every Base UI component, re-exported unstyled                   |
-| `packages/tokens`    | `@ds/tokens` — bare shell. Format, tiers, naming and build are undecided      |
+| `packages/tokens`    | `@ds/tokens` — DTCG JSON source, one file per collection. No build yet        |
 | `apps/storybook`     | `storybook-web` — one bare story per component                                |
 | `docs/ADR`           | Decision records, with a generated index                                      |
 | `docs/research`      | Pre-decision space: what is measurably true, ending in open questions         |

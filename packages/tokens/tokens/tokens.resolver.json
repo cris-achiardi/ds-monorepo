@@ -1,0 +1,67 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/resolver.json",
+  "name": "ds",
+  "version": "2025.10",
+  "description": "Every token file, with the colour theme as the one modifier.",
+  "sets": {
+    "primitives": {
+      "sources": [
+        {
+          "$ref": "color-primitives.tokens.json"
+        },
+        {
+          "$ref": "spacing.tokens.json"
+        },
+        {
+          "$ref": "size.tokens.json"
+        },
+        {
+          "$ref": "border-width.tokens.json"
+        },
+        {
+          "$ref": "radius.tokens.json"
+        },
+        {
+          "$ref": "opacity.tokens.json"
+        },
+        {
+          "$ref": "font-size.tokens.json"
+        },
+        {
+          "$ref": "line-height.tokens.json"
+        },
+        {
+          "$ref": "font-weight.tokens.json"
+        },
+        {
+          "$ref": "duration.tokens.json"
+        }
+      ]
+    }
+  },
+  "modifiers": {
+    "theme": {
+      "contexts": {
+        "light": [
+          {
+            "$ref": "color-semantic.light.tokens.json"
+          }
+        ],
+        "dark": [
+          {
+            "$ref": "color-semantic.dark.tokens.json"
+          }
+        ]
+      },
+      "default": "light"
+    }
+  },
+  "resolutionOrder": [
+    {
+      "$ref": "#/sets/primitives"
+    },
+    {
+      "$ref": "#/modifiers/theme"
+    }
+  ]
+}

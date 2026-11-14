@@ -1,0 +1,195 @@
+{
+  "$schema": "https://www.designtokens.org/schemas/2025.10/format.json",
+  "color": {
+    "$type": "color",
+    "bg": {
+      "page": {
+        "$value": "{color.neutral.1200}",
+        "$description": "The page itself."
+      },
+      "subtle": {
+        "$value": "{color.neutral.1100}",
+        "$description": "Quiet areas, hovered rows."
+      },
+      "muted": {
+        "$value": "{color.neutral.1000}",
+        "$description": "Tracks (slider, progress, switch off), disabled fills."
+      },
+      "raised": {
+        "$value": "{color.neutral.1100}",
+        "$description": "Floating parts: popover, menu, dialog, toast."
+      },
+      "inverse": {
+        "$value": "{color.neutral.100}",
+        "$description": "Tooltip."
+      },
+      "backdrop": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [0, 0, 0],
+          "alpha": 0.64,
+          "hex": "#000000"
+        },
+        "$description": "Behind dialog and drawer. A raw value, not a reference: a reference cannot carry alpha."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{color.neutral.100}",
+        "$description": "Body, labels, titles."
+      },
+      "secondary": {
+        "$value": "{color.neutral.400}",
+        "$description": "Descriptions, helper text."
+      },
+      "placeholder": {
+        "$value": "{color.neutral.600}",
+        "$description": "Input placeholder."
+      },
+      "disabled": {
+        "$value": "{color.neutral.800}",
+        "$description": "Disabled labels."
+      },
+      "inverse": {
+        "$value": "{color.neutral.1200}",
+        "$description": "Text on bg.inverse."
+      },
+      "link": {
+        "$value": "{color.blue.500}",
+        "$description": "Links."
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.neutral.1000}",
+        "$description": "Dividers, separator."
+      },
+      "default": {
+        "$value": "{color.neutral.900}",
+        "$description": "Cards, popups, decorative outlines."
+      },
+      "control": {
+        "$value": "{color.neutral.700}",
+        "$description": "Input, checkbox and radio outlines."
+      },
+      "focus": {
+        "$value": "{color.blue.500}",
+        "$description": "Focus ring."
+      }
+    },
+    "accent": {
+      "default": {
+        "$value": "{color.blue.500}",
+        "$description": "Primary button, checked checkbox, switch on, slider fill."
+      },
+      "hover": {
+        "$value": "{color.blue.400}",
+        "$description": "accent.default, hovered."
+      },
+      "pressed": {
+        "$value": "{color.blue.300}",
+        "$description": "accent.default, pressed."
+      },
+      "subtle": {
+        "$value": "{color.blue.1100}",
+        "$description": "Selected row, highlighted menu item."
+      },
+      "subtle-hover": {
+        "$value": "{color.blue.1000}",
+        "$description": "accent.subtle, hovered."
+      },
+      "on": {
+        "$value": "{color.neutral.1200}",
+        "$description": "Text and icons on accent.default."
+      },
+      "text": {
+        "$value": "{color.blue.500}",
+        "$description": "Accent-coloured text on bg.page."
+      }
+    },
+    "accent2": {
+      "default": {
+        "$value": "{color.rose.500}",
+        "$description": "Second brand colour as a fill."
+      },
+      "hover": {
+        "$value": "{color.rose.400}",
+        "$description": "accent2.default, hovered."
+      },
+      "pressed": {
+        "$value": "{color.rose.300}",
+        "$description": "accent2.default, pressed."
+      },
+      "subtle": {
+        "$value": "{color.rose.1100}",
+        "$description": "Tinted background."
+      },
+      "on": {
+        "$value": "{color.neutral.1200}",
+        "$description": "Text and icons on accent2.default."
+      },
+      "text": {
+        "$value": "{color.rose.500}",
+        "$description": "Rose-coloured text on bg.page."
+      }
+    },
+    "success": {
+      "default": {
+        "$value": "{color.green.500}",
+        "$description": "Solid fill."
+      },
+      "subtle": {
+        "$value": "{color.green.1100}",
+        "$description": "Tinted background."
+      },
+      "border": {
+        "$value": "{color.green.800}",
+        "$description": "Outline of a tinted box."
+      },
+      "text": {
+        "$value": "{color.green.400}",
+        "$description": "Text and icons."
+      }
+    },
+    "warning": {
+      "default": {
+        "$value": "{color.yellow.300}",
+        "$description": "Solid fill. Carries dark text in both themes."
+      },
+      "subtle": {
+        "$value": "{color.yellow.1100}",
+        "$description": "Tinted background."
+      },
+      "border": {
+        "$value": "{color.yellow.800}",
+        "$description": "Outline of a tinted box."
+      },
+      "text": {
+        "$value": "{color.yellow.300}",
+        "$description": "Text and icons."
+      }
+    },
+    "danger": {
+      "default": {
+        "$value": "{color.red.500}",
+        "$description": "Destructive button, invalid indicator."
+      },
+      "hover": {
+        "$value": "{color.red.400}",
+        "$description": "danger.default, hovered."
+      },
+      "subtle": {
+        "$value": "{color.red.1100}",
+        "$description": "Tinted background."
+      },
+      "border": {
+        "$value": "{color.red.500}",
+        "$description": "Invalid field outline."
+      },
+      "text": {
+        "$value": "{color.red.500}",
+        "$description": "Field error message."
+      }
+    }
+  }
+}

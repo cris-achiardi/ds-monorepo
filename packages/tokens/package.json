@@ -3,5 +3,5 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Design tokens. Empty shell: format, tiers, naming and build tooling are undecided."
+  "description": "Design tokens, authored as DTCG 2025.10 JSON. No build yet."
 }

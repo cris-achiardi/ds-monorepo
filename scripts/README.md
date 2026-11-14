@@ -8,13 +8,14 @@ earns a place in `pnpm verify`.
 
 ## What is here
 
-| Script                                   | Command                                         | Kind      | What it is for                                                                                              |
-| ---------------------------------------- | ----------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------- |
-| [`init-ds.mjs`](./init-ds.mjs)           | `pnpm init-ds <name> [--dry]`                   | codemod   | Brand the repo **once**: package scope, token prefix and data-attribute prefix together                     |
-| [`verify-docs.mjs`](./verify-docs.mjs)   | `pnpm verify:docs`                              | **gate**  | Every link, path and `pnpm` command named in the docs resolves, and every directory is covered by a doc     |
-| [`adr-index.mjs`](./adr-index.mjs)       | `pnpm adr-index` / `pnpm adr-index:check`       | generator | The ADR index, derived from the records themselves                                                          |
-| [`design-index.mjs`](./design-index.mjs) | `pnpm design-index` / `pnpm design-index:check` | generator | The design-record index, derived from the records; the check also fails a record missing a required section |
-| [`verify-figma.mjs`](./verify-figma.mjs) | `pnpm verify:figma`                             | **gate**  | `.figma/maps/*.json` validate against their schemas, and claim no code path they lack                       |
+| Script                                       | Command                                             | Kind      | What it is for                                                                                              |
+| -------------------------------------------- | --------------------------------------------------- | --------- | ----------------------------------------------------------------------------------------------------------- |
+| [`init-ds.mjs`](./init-ds.mjs)               | `pnpm init-ds <name> [--dry]`                       | codemod   | Brand the repo **once**: package scope, token prefix and data-attribute prefix together                     |
+| [`verify-docs.mjs`](./verify-docs.mjs)       | `pnpm verify:docs`                                  | **gate**  | Every link, path and `pnpm` command named in the docs resolves, and every directory is covered by a doc     |
+| [`adr-index.mjs`](./adr-index.mjs)           | `pnpm adr-index` / `pnpm adr-index:check`           | generator | The ADR index, derived from the records themselves                                                          |
+| [`design-index.mjs`](./design-index.mjs)     | `pnpm design-index` / `pnpm design-index:check`     | generator | The design-record index, derived from the records; the check also fails a record missing a required section |
+| [`prop-catalogue.mjs`](./prop-catalogue.mjs) | `pnpm prop-catalogue` / `pnpm prop-catalogue:check` | generator | The prop surface of the React library, read from its types; the check is a **gate** on any change to it     |
+| [`verify-figma.mjs`](./verify-figma.mjs)     | `pnpm verify:figma`                                 | **gate**  | `.figma/maps/*.json` validate against their schemas, and claim no code path they lack                       |
 
 ## The rule these follow
 
