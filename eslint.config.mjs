@@ -12,8 +12,20 @@
 
 export default [
   {
-    files: ['**/*.mjs', '**/*.js'],
+    // Global: generated output is never linted. An `ignores` beside `files` only narrows that one
+    // config object, and ESLint still lints a matching `.js` file with its defaults — which is how
+    // a local `pnpm build:storybook` made `pnpm lint` fail on the bundle's own disable comments.
     ignores: ['**/node_modules/**', '**/dist/**', '**/build/**', '**/storybook-static/**'],
+  },
+  {
+    files: ['**/*.mjs', '**/*.js'],
+    ignores: [
+      // A skill's asset is a paste-in prelude, not a module: `diagram-kit.js` is a library of
+      // helpers copied into a `figma_execute` call one at a time, so every function in it being
+      // unused within the file is the point of the file. Carried over from the template with the
+      // skill.
+      '.claude/skills/**/assets/**',
+    ],
     languageOptions: {
       ecmaVersion: 2024,
       sourceType: 'module',

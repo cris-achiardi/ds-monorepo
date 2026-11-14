@@ -13,7 +13,7 @@
       "usedBy": []
     },
     "write": {
-      "_doc": "figma-console MCP driving the Desktop Bridge plugin. OPT-IN and unwired: no script, gate or skill in this repo invokes it. Every write must first compare `figma.fileKey` against sources.<key>.key and pin the target with `figma_navigate({ url, lock: true })`.",
+      "_doc": "figma-console MCP driving the Desktop Bridge plugin. OPT-IN: no script or gate in this repo invokes it. The three ds-figma-* skills in .claude/skills/ write through it; they were imported from the template and are not adapted to this repo yet. Every write must first compare `figma.fileKey` against sources.<key>.key and pin the target with `figma_navigate({ url, lock: true })`.",
       "kind": "figma-console-mcp",
       "direction": "write",
       "requires": [
@@ -21,16 +21,16 @@
         "Desktop Bridge plugin open in the target file",
         "local figma-console MCP server"
       ],
-      "usedBy": [],
+      "usedBy": ["ds-figma-component", "ds-figma-document", "ds-figma-explain"],
       "gated": false
     }
   },
   "sources": {
     "main": {
-      "_doc": "NOT LINKED YET. `key: null` records that no design file has been chosen — fill key, name and url when one is. The source key `main` is what maps/*.json point at.",
-      "key": null,
-      "name": null,
-      "url": null,
+      "_doc": "Linked on 2026-11-14. Nothing has been read from it yet: `data` is empty and both maps are empty. The source key `main` is what maps/*.json point at.",
+      "key": "4IXxagPAVz0QWGDlnBsfYr",
+      "name": "ds-monorepo",
+      "url": "https://www.figma.com/design/4IXxagPAVz0QWGDlnBsfYr/ds-monorepo",
       "purpose": "The design source for this system.",
       "published": false,
       "libraryKey": null,

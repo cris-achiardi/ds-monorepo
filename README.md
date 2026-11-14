@@ -34,8 +34,8 @@ pnpm install               # workspace links move with the scope
 | `docs/research`      | Pre-decision space: what is measurably true, ending in open questions         |
 | `docs/design`        | Design direction: one record per concern — principles, checks, open questions |
 | `docs/documentation` | Plain-language pages for designers                                            |
-| `.figma`             | Which design file is read, and what has been reconciled. No file linked yet   |
-| `.claude/skills`     | Agent skills. One so far: `ds-decide`                                         |
+| `.figma`             | Which design file is read, and what has been reconciled. Nothing read yet     |
+| `.claude/skills`     | Agent skills: `ds-decide`, plus three Figma skills not adapted yet            |
 | `scripts`            | Gates, index generators and the branding codemod                              |
 
 ## Gates

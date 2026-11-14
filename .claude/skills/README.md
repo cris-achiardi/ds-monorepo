@@ -24,9 +24,27 @@ decided.
 
 ## Index
 
-| Skill                       | What it does                                                                                             | Writes to   |
-| --------------------------- | -------------------------------------------------------------------------------------------------------- | ----------- |
-| [`ds-decide`](./ds-decide/) | Turns a research report's open questions into Architecture Decision Records. Writes records, never code. | `docs/ADR/` |
+| Skill                                         | What it does                                                                                                             | Writes to                            |
+| --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
+| [`ds-decide`](./ds-decide/)                   | Turns a research report's open questions into Architecture Decision Records. Writes records, never code.                 | `docs/ADR/`                          |
+| [`ds-figma-component`](./ds-figma-component/) | Generates a Figma component set from a component contract. **Not adapted yet.**                                          | Figma, `.figma/maps/components.json` |
+| [`ds-figma-document`](./ds-figma-document/)   | Lays out the page around a component set: title, description, labelled cell grid, extension tables. **Not adapted yet.** | Figma, `.figma/maps/components.json` |
+| [`ds-figma-explain`](./ds-figma-explain/)     | Builds explanatory boards: node graphs, spec tables, annotated anatomy, flows. **Not adapted yet.**                      | Figma                                |
 
-The template this repo was scaffolded from also shipped component-generation and Figma-writing
-skills. They depended on its contract engine and were not carried over.
+## The Figma skills are imported, not adapted
+
+The three `ds-figma-*` skills were copied on 2026-11-14 from
+[`weave-ds-template`](https://github.com/cris-achiardi/weave-ds-template) at commit `9fed1f2`, to be
+adapted to this repo afterwards. Until that happens, read them as the template's procedure, not this
+repo's:
+
+- They assume the template's **contract engine**, which was deliberately not carried over (see the
+  root [`AGENTS.md`](../../AGENTS.md) → Origin). `ds-figma-component` reads a component contract
+  from a `packages/contracts` package that does not exist here, so it cannot run as written.
+- They describe the template's Figma file (its modes, pages and variable collections), not the file
+  linked in [`../../.figma/manifest.json`](../../.figma/manifest.json).
+- Five pointers to template-only files and scripts were reworded to say they were not carried over,
+  because `pnpm verify:docs` fails on a pointer that resolves to nothing. No other content was
+  changed.
+
+The template's `ds-component` skill, which generated components from contracts, was not imported.

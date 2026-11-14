@@ -2,9 +2,9 @@
 
 How this repo reads its design source, and what it has recorded so far.
 
-**No design file is linked yet.** [`manifest.json`](./manifest.json) → `sources.main` has
-`key: null`. Fill in the key, name and URL when a file is chosen; everything else reads it from
-there.
+**The design file is linked, and nothing has been read from it yet.**
+[`manifest.json`](./manifest.json) → `sources.main` holds its key, name and URL; everything else
+reads them from there. Both maps are still empty.
 
 **Build isolation.** `.figma/` is development-time tooling only: it sits at the repo root outside
 every workspace package, no package source imports from it, and no build target reads it. Nothing
@@ -18,7 +18,7 @@ and nothing in it is checked.
 
 Three consequences:
 
-- **Reading Figma is not a pipeline stage.** No skill sweeps the file. You read it when you need
+- **Reading Figma is not a pipeline stage.** No skill sweeps the file to read it. You read it when you need
   reference, and you write down what you found in `docs/research/`.
 - **Measure, never eyeball.** A screenshot cannot tell you a padding value or a bound variable. A
   number read off an image is a guess, and a proposal built on guessed numbers is worse than no
