@@ -4,11 +4,12 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node dev.mjs",
-    "build": "storybook build"
+    "dev": "pnpm --filter @ds/tokens build && node dev.mjs",
+    "build": "pnpm --filter @ds/tokens build && storybook build"
   },
   "dependencies": {
     "@ds/react": "workspace:*",
+    "@ds/tokens": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

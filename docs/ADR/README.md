@@ -33,8 +33,8 @@ describe how **this repository** is organised and both are still mechanized here
   (`pnpm design-index:check`).
 
 The template's other records governed its contract engine, which was not carried over, so they
-were left behind. Decisions about the React library start at **0003**. Every decision about the
-token system is still to be made, and gets its own record here when it is.
+were left behind. Decisions about the React library start at **0003**. Decisions about the token
+system start at **0007**.
 
 > **The table below is generated** by `pnpm adr-index` from the records themselves — the number from
 > the filename, the title from the H1, the status from each record's `Status:` line. Do not edit it
@@ -43,16 +43,18 @@ token system is still to be made, and gets its own record here when it is.
 
 <!-- adr-index:start -->
 
-| #                                                                                      | Title                                                                                           | Status   |
-| -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------- |
-| [0001](./0001-every-layer-is-self-describing.md)                                       | Every layer is self-describing, and context is pulled rather than pushed                        | Accepted |
-| [0002](./0002-design-guidelines-live-in-docs-design-as-principles-agents-can-check.md) | Design guidelines live in `docs/design` as principles an agent can check, not recipes it copies | Draft    |
-| [0003](./0003-the-library-re-exports-base-ui-entry-points-unchanged.md)                | `@ds/react` depends on `@base-ui/react` and re-exports each component entry point unchanged     | Draft    |
-| [0004](./0004-component-styles-are-written-as-css-modules.md)                          | Component styles are written as CSS Modules                                                     | Draft    |
-| [0005](./0005-one-folder-per-component-named-after-its-base-ui-entry-point.md)         | One folder per component, named after its Base UI entry point                                   | Draft    |
-| [0006](./0006-the-prop-surface-is-a-generated-catalogue-checked-in-ci.md)              | The prop surface of `@ds/react` is a generated catalogue, committed and checked in CI           | Draft    |
-| [0007](./0007-tokens-are-authored-as-dtcg-json-one-file-per-collection.md)             | Tokens are authored as DTCG 2025.10 JSON, one file per collection                               | Draft    |
-| [0008](./0008-two-token-tiers-semantic-colour-references-primitives.md)                | Two token tiers: semantic colour references primitives, and paths mirror the Figma names        | Draft    |
+| #                                                                                                       | Title                                                                                                  | Status   |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | -------- |
+| [0001](./0001-every-layer-is-self-describing.md)                                                        | Every layer is self-describing, and context is pulled rather than pushed                               | Accepted |
+| [0002](./0002-design-guidelines-live-in-docs-design-as-principles-agents-can-check.md)                  | Design guidelines live in `docs/design` as principles an agent can check, not recipes it copies        | Draft    |
+| [0003](./0003-the-library-re-exports-base-ui-entry-points-unchanged.md)                                 | `@ds/react` depends on `@base-ui/react` and re-exports each component entry point unchanged            | Draft    |
+| [0004](./0004-component-styles-are-written-as-css-modules.md)                                           | Component styles are written as CSS Modules                                                            | Draft    |
+| [0005](./0005-one-folder-per-component-named-after-its-base-ui-entry-point.md)                          | One folder per component, named after its Base UI entry point                                          | Draft    |
+| [0006](./0006-the-prop-surface-is-a-generated-catalogue-checked-in-ci.md)                               | The prop surface of `@ds/react` is a generated catalogue, committed and checked in CI                  | Draft    |
+| [0007](./0007-tokens-are-authored-as-dtcg-json-one-file-per-collection.md)                              | Tokens are authored as DTCG 2025.10 JSON, one file per collection                                      | Draft    |
+| [0008](./0008-two-token-tiers-semantic-colour-references-primitives.md)                                 | Two token tiers: semantic colour references primitives, and paths mirror the Figma names               | Draft    |
+| [0009](./0009-tokens-build-to-one-stylesheet-of-custom-properties-and-the-theme-is-a-root-attribute.md) | Tokens build to one stylesheet of custom properties, and the theme is an attribute on the root element | Draft    |
+| [0010](./0010-icons-come-from-phosphor.md)                                                              | Icons come from Phosphor, through `@phosphor-icons/react`                                              | Draft    |
 
 <!-- adr-index:end -->
 

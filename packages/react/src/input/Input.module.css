@@ -1,0 +1,42 @@
+.root {
+  box-sizing: border-box;
+  height: var(--ds-size-40);
+  margin: 0;
+  padding: 0 var(--ds-spacing-12);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-8);
+  background-color: var(--ds-color-bg-page);
+  color: var(--ds-color-text-primary);
+  font: inherit;
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+  font-weight: var(--ds-font-weight-400);
+  transition: border-color var(--ds-duration-150);
+}
+
+.root::placeholder {
+  color: var(--ds-color-text-placeholder);
+  opacity: 1;
+}
+
+.root:focus-visible {
+  border-color: var(--ds-color-border-focus);
+  /* Drawn over the border, so the ring is 2 wide and the box does not grow. */
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: calc(-1 * var(--ds-border-width-1));
+}
+
+.root[data-invalid] {
+  border-color: var(--ds-color-danger-border);
+}
+
+.root[data-disabled] {
+  border-color: var(--ds-color-border-subtle);
+  background-color: var(--ds-color-bg-muted);
+  color: var(--ds-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.root[data-disabled]::placeholder {
+  color: var(--ds-color-text-disabled);
+}

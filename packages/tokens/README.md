@@ -1,7 +1,7 @@
 # @ds/tokens
 
-The design token package. It holds the **token source files and nothing else**: there is no build,
-so nothing in the repository consumes a token yet.
+The design token package. It holds the **token source files** and a build that turns them into one
+stylesheet of CSS custom properties, `build/tokens.css`, exported under the subpath `tokens.css` of the package.
 
 ## What is decided
 
@@ -48,18 +48,33 @@ A reference is written `{color.blue.800}`. The correspondence to Figma variables
 
 ## What is not decided
 
-- **Build tooling and outputs** — what consumers import (CSS custom properties, typed constants),
-  and whether dimensions are emitted in `px` or `rem`
-- **Validation** — nothing checks these files: not their shape, not that references resolve, not
-  that the two mode files declare the same paths
+- **Outputs beyond the stylesheet** — typed constants, other platforms, and whether a published
+  build tool replaces the script
+- **Validation of shape** — the build fails on a broken reference and on mode files that declare
+  different paths; nothing validates the files against the DTCG schema
 - **Typeface** — there is no font family token
 - **Shadow and easing** — four shadows and three easing curves were explored on the Figma canvas and
   are not in these files. Figma variables cannot hold them, so they had no collection to come from
 - **Component tier** — none exists
 - **Whether a numeric token keeps its value as its name**
 
-## When this package gets a build
+## The build
 
-Add a `build` script to `package.json`; the root `pnpm build` picks it up automatically. Generated
-output goes in `build/` or `dist/`, both of which are already ignored by git and Prettier. Then
-import the stylesheet in `apps/storybook/.storybook/preview.ts`.
+```bash
+pnpm build      # from the repo root: runs this package's build with every other
+```
+
+[`scripts/build.mjs`](./scripts/build.mjs) reads `tokens/tokens.resolver.json` and writes
+`build/tokens.css`, which is ignored by git and Prettier. What it emits, and why, is
+[ADR 0009](../../docs/ADR/0009-tokens-build-to-one-stylesheet-of-custom-properties-and-the-theme-is-a-root-attribute.md):
+
+- `color.bg.page` becomes `--ds-color-bg-page`; the prefix comes from `/ds.config.json`.
+- A reference stays a reference: `{color.blue.800}` is emitted as `var(--ds-color-blue-800)`.
+- Primitives are on `:root`. Each theme is on `[data-ds-theme='<theme>']`, and the default theme is
+  also on `:root`. Set the attribute on the root element, or portaled popups keep the default.
+
+The build throws on a value shape it has not been taught. Adding a `shadow`, `cubicBezier` or
+`typography` token means teaching the script to print it first.
+
+The stylesheet is imported once, in `apps/storybook/.storybook/preview.ts`. The Storybook `dev` and
+`build` scripts run this build first.

@@ -3,8 +3,8 @@
 The preview app for `@ds/react`. Workspace package name: `storybook-web`.
 
 `.storybook/` holds the whole configuration; this app contains no stories of its own. The library
-has one story per component, each showing the component assembled with placeholder content and no
-styles.
+has at least one story per component, each showing the component assembled with placeholder content.
+Four components are styled; the rest render with no styles.
 
 ## Running it
 
@@ -29,8 +29,12 @@ packages/react/src/**/<Name>.stories.tsx
 workspace link, so a story hot-reloads against the component being edited, with no build step in
 between.
 
-`.storybook/preview.ts` is where the token stylesheet gets imported once `packages/tokens` produces
-one. Until then components render with no system styles.
+`.storybook/preview.ts` imports the token stylesheet from the `tokens.css` subpath of the tokens package. That file is build
+output, so the `dev` and `build` scripts of this app run the token build first.
+
+The same file adds a **Theme** switch to the toolbar (light, dark) and a decorator that sets the
+theme attribute on the root element and paints a page behind the story. The decorator is preview
+scaffolding: its font family is a stand-in, because the system has no font-family token.
 
 ## What a story is for
 

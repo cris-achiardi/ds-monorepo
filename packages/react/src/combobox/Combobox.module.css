@@ -1,0 +1,188 @@
+.label {
+  display: block;
+  margin-bottom: var(--ds-spacing-4);
+  color: var(--ds-color-text-primary);
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+  font-weight: var(--ds-font-weight-500);
+}
+
+/* The field: the border and the focus ring live here, the input inside is bare. */
+.inputGroup {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-spacing-4);
+  height: var(--ds-size-40);
+  padding: 0 var(--ds-spacing-8) 0 var(--ds-spacing-12);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-8);
+  background-color: var(--ds-color-bg-page);
+  transition: border-color var(--ds-duration-150);
+}
+
+.inputGroup:focus-within {
+  border-color: var(--ds-color-border-focus);
+  /* Drawn over the border, so the ring is 2 wide and the box does not grow. */
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: calc(-1 * var(--ds-border-width-1));
+}
+
+.inputGroup[data-invalid] {
+  border-color: var(--ds-color-danger-border);
+}
+
+.inputGroup[data-disabled] {
+  border-color: var(--ds-color-border-subtle);
+  background-color: var(--ds-color-bg-muted);
+  cursor: not-allowed;
+}
+
+.input {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  color: var(--ds-color-text-primary);
+  font: inherit;
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+  font-weight: var(--ds-font-weight-400);
+}
+
+.input::placeholder {
+  color: var(--ds-color-text-placeholder);
+  opacity: 1;
+}
+
+.input[data-disabled] {
+  color: var(--ds-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.input[data-disabled]::placeholder {
+  color: var(--ds-color-text-disabled);
+}
+
+/* The two icon buttons inside the field. */
+.clear,
+.trigger {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--ds-size-24);
+  height: var(--ds-size-24);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ds-radius-4);
+  background-color: transparent;
+  color: var(--ds-color-text-secondary);
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-150),
+    color var(--ds-duration-150);
+}
+
+.clear:hover,
+.trigger:hover {
+  background-color: var(--ds-color-bg-subtle);
+  color: var(--ds-color-text-primary);
+}
+
+.clear:focus-visible,
+.trigger:focus-visible {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: 0;
+}
+
+.clear[data-disabled],
+.trigger[data-disabled] {
+  background-color: transparent;
+  color: var(--ds-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.clear svg,
+.trigger svg,
+.itemIndicator svg {
+  flex: none;
+  width: var(--ds-size-16);
+  height: var(--ds-size-16);
+}
+
+.popup {
+  box-sizing: border-box;
+  width: var(--anchor-width);
+  max-width: var(--available-width);
+  padding: var(--ds-spacing-4);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-default);
+  border-radius: var(--ds-radius-8);
+  background-color: var(--ds-color-bg-raised);
+  color: var(--ds-color-text-primary);
+  transform-origin: var(--transform-origin);
+  transition: opacity var(--ds-duration-150);
+}
+
+.popup[data-starting-style],
+.popup[data-ending-style] {
+  opacity: var(--ds-opacity-0);
+}
+
+.list {
+  max-height: var(--available-height);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  outline: 0;
+}
+
+.item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  gap: var(--ds-spacing-8);
+  padding: var(--ds-spacing-8);
+  border-radius: var(--ds-radius-4);
+  outline: 0;
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+  font-weight: var(--ds-font-weight-400);
+  cursor: default;
+  user-select: none;
+}
+
+.item[data-highlighted] {
+  background-color: var(--ds-color-accent-subtle);
+}
+
+.item[data-disabled] {
+  color: var(--ds-color-text-disabled);
+}
+
+/* Always at the end of the row, wherever it sits in the markup. */
+.itemIndicator {
+  display: inline-flex;
+  order: 1;
+  margin-inline-start: auto;
+  color: var(--ds-color-accent-text);
+}
+
+.empty {
+  box-sizing: border-box;
+  padding: var(--ds-spacing-8);
+  color: var(--ds-color-text-secondary);
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+}
+
+/* Base UI keeps the part mounted and empties it when there are matches. */
+.empty:empty {
+  display: none;
+}

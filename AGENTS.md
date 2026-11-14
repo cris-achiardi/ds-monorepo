@@ -19,13 +19,14 @@ descend into a module only when you are in its territory.
 ## What this is
 
 A **design-system monorepo at an early state**: governance, documentation layers, Figma wiring, CI
-and tooling are in place. The component library **re-exports every Base UI component unstyled**. The
-tokens exist as **DTCG source files with no build**, so nothing consumes them yet.
+and tooling are in place. The component library **re-exports every Base UI component**; four are
+styled, the rest are not. The tokens are **DTCG source files built to one stylesheet of CSS custom
+properties**.
 
 ```
-packages/react/    @ds/react  — React component library. Base UI re-exported unstyled, one folder each
-packages/tokens/   @ds/tokens — design tokens as DTCG JSON, one file per collection. No build yet
-apps/storybook/    storybook-web — preview app, globs one bare story per component from packages/react
+packages/react/    @ds/react  — React component library. Base UI re-exported, one folder each; four styled
+packages/tokens/   @ds/tokens — design tokens as DTCG JSON, one file per collection, built to tokens.css
+apps/storybook/    storybook-web — preview app, globs the stories beside each component in packages/react
 docs/research/     pre-decision: what is measurably true
 docs/ADR/          post-decision: what we decided and why
 docs/design/       design direction: how a screen should look, one record per concern
@@ -35,8 +36,8 @@ docs/documentation/ plain-language explanations for designers
 scripts/           repo-wide gates, generators and the branding codemod
 ```
 
-`@ds/tokens` has no build **on purpose** and `@ds/react` has no styles **on purpose**; their READMEs
-list what is undecided: [`packages/react/README.md`](./packages/react/README.md) and
+Most of `@ds/react` has no styles **on purpose**, and `@ds/tokens` builds one stylesheet and nothing
+more **on purpose**; their READMEs list what is undecided: [`packages/react/README.md`](./packages/react/README.md) and
 [`packages/tokens/README.md`](./packages/tokens/README.md). Two constraints bind work there:
 
 - **Base UI is the behaviour layer for `@ds/react`, and each component is a pass-through until it is

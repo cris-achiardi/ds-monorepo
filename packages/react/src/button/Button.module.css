@@ -1,0 +1,47 @@
+.root {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ds-spacing-8);
+  height: var(--ds-size-40);
+  margin: 0;
+  padding: 0 var(--ds-spacing-16);
+  border: 0;
+  border-radius: var(--ds-radius-8);
+  background-color: var(--ds-color-accent-default);
+  color: var(--ds-color-accent-on);
+  font: inherit;
+  font-size: var(--ds-font-size-14);
+  line-height: var(--ds-line-height-20);
+  font-weight: var(--ds-font-weight-500);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color var(--ds-duration-150);
+}
+
+.root:hover {
+  background-color: var(--ds-color-accent-hover);
+}
+
+.root:active {
+  background-color: var(--ds-color-accent-pressed);
+}
+
+.root:focus-visible {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-spacing-2);
+}
+
+.root[data-disabled] {
+  background-color: var(--ds-color-bg-muted);
+  color: var(--ds-color-text-disabled);
+  cursor: not-allowed;
+}
+
+.root svg {
+  flex: none;
+  width: var(--ds-size-16);
+  height: var(--ds-size-16);
+}

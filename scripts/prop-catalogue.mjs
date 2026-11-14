@@ -223,6 +223,14 @@ function valueExports(checker, moduleSymbol) {
           hasExport(statement)
         ) {
           names.add(statement.name.text);
+        } else if (
+          // `export import Root = Base.Root;` — how a parts module passes a Base UI part through
+          // with its type namespace intact. It is a runtime export like any other.
+          ts.isImportEqualsDeclaration(statement) &&
+          !statement.isTypeOnly &&
+          hasExport(statement)
+        ) {
+          names.add(statement.name.text);
         }
       }
     }

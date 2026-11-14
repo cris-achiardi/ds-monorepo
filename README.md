@@ -1,8 +1,9 @@
 # Design system monorepo
 
 A design-system monorepo at an early state. Governance, documentation layers, Figma wiring, CI and
-tooling are in place. **The React library re-exports every Base UI component with no styles of its
-own, and the tokens exist as source files that nothing builds or consumes yet.**
+tooling are in place. **The React library re-exports every Base UI component; four of them (Button,
+Switch, Input, Combobox) are styled with the tokens, which build to one stylesheet of CSS custom
+properties.**
 
 Scaffolded from [`weave-ds-template`](https://github.com/cris-achiardi/weave-ds-template), without
 its contract engine and multi-framework backends.
@@ -12,7 +13,7 @@ its contract engine and multi-framework backends.
 ```bash
 pnpm install
 pnpm verify                # every gate
-pnpm dev:storybook         # http://localhost:6006 — one unstyled story per component
+pnpm dev:storybook         # http://localhost:6006 — stories for every component
 ```
 
 The repo is generic for now (`@ds/*`, `--ds-*`). Brand it once, before anything is styled:

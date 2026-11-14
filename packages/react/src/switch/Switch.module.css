@@ -1,0 +1,63 @@
+.root {
+  box-sizing: border-box;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  width: var(--ds-size-40);
+  height: var(--ds-size-24);
+  margin: 0;
+  padding: 0 var(--ds-spacing-2);
+  border: var(--ds-border-width-1) solid var(--ds-color-border-control);
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-muted);
+  vertical-align: middle;
+  cursor: pointer;
+  transition:
+    background-color var(--ds-duration-150),
+    border-color var(--ds-duration-150);
+}
+
+.root[data-checked] {
+  border-color: var(--ds-color-accent-default);
+  background-color: var(--ds-color-accent-default);
+}
+
+.root[data-checked]:hover {
+  border-color: var(--ds-color-accent-hover);
+  background-color: var(--ds-color-accent-hover);
+}
+
+.root:focus-visible {
+  outline: var(--ds-border-width-2) solid var(--ds-color-border-focus);
+  outline-offset: var(--ds-spacing-2);
+}
+
+.root[data-disabled] {
+  border-color: var(--ds-color-border-subtle);
+  background-color: var(--ds-color-bg-muted);
+  cursor: not-allowed;
+}
+
+.thumb {
+  display: block;
+  width: var(--ds-size-16);
+  height: var(--ds-size-16);
+  margin-inline-start: 0;
+  border-radius: var(--ds-radius-full);
+  background-color: var(--ds-color-bg-inverse);
+  transition:
+    margin-inline-start var(--ds-duration-150),
+    background-color var(--ds-duration-150);
+}
+
+.thumb[data-checked] {
+  /* Track width, less the thumb, the two paddings and the two borders. */
+  margin-inline-start: calc(
+    var(--ds-size-40) - var(--ds-size-16) - 2 * var(--ds-spacing-2) - 2 * var(--ds-border-width-1)
+  );
+  background-color: var(--ds-color-accent-on);
+}
+
+.thumb[data-disabled] {
+  background-color: var(--ds-color-text-disabled);
+}

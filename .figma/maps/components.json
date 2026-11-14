@@ -1,7 +1,81 @@
 {
   "_schema": "1.0",
-  "_doc": "Code component <-> Figma node, and the running record of what has been reconciled. `componentKey` stays null until the source file is published as a library; until then the join is pageId + componentSetId, both of which are file-local and refreshable. A component absent from this map has no Figma representation yet — the absence is the signal, so add an entry when the work is done, never in advance.",
-  "lastScanned": null,
+  "_doc": "Code component <-> Figma node, and the running record of what has been reconciled. `componentKey` stays null until the source file is published as a library; until then the join is pageId + componentSetId, both of which are file-local and refreshable. A component absent from this map has no Figma representation yet — the absence is the signal, so add an entry when the work is done, never in advance. In every entry below `State` is a DESIGN-ONLY axis: hover, pressed, focus, filled, open and highlighted have no prop in code, and only `Disabled` does. It is recorded because it is what the set contains, not because it agrees with a prop value set.",
+  "lastScanned": "2026-11-14",
   "source": "main",
-  "components": {}
+  "components": {
+    "Button": {
+      "source": "main",
+      "codePath": "packages/react/src/button",
+      "pageId": "41:3868",
+      "componentSetId": "41:4394",
+      "componentId": null,
+      "componentKey": null,
+      "assetType": "component_set",
+      "variantCount": 5,
+      "axes": { "State": ["Default", "Hover", "Pressed", "Focus", "Disabled"] },
+      "dependsOn": [],
+      "generatedAt": "2026-11-14",
+      "note": "Hand-generated through the write bridge from Button.module.css, not from a contract. Non-variant properties: Label (text), Leading icon and Trailing icon (boolean), and an instance swap for each. Instances icon/plus and icon/arrow-right. 0 unbound paints, radii or type values at generation. The focus ring is an absolutely positioned rectangle 4 outside the box (border-width/2 at a spacing/2 offset), with radius/12."
+    },
+    "Switch": {
+      "source": "main",
+      "codePath": "packages/react/src/switch",
+      "pageId": "41:3869",
+      "componentSetId": "41:4065",
+      "componentId": null,
+      "componentKey": null,
+      "assetType": "component_set",
+      "variantCount": 8,
+      "axes": {
+        "Checked": ["false", "true"],
+        "State": ["Default", "Hover", "Focus", "Disabled"]
+      },
+      "dependsOn": [],
+      "generatedAt": "2026-11-14",
+      "note": "Hand-generated through the write bridge from Switch.module.css. `Checked` is the `checked` prop. `Checked=false, State=Hover` is identical to `Checked=false, State=Default`: the stylesheet has no hover rule for the off state. 0 unbound values at generation."
+    },
+    "Input": {
+      "source": "main",
+      "codePath": "packages/react/src/input",
+      "pageId": "41:3870",
+      "componentSetId": "41:4139",
+      "componentId": null,
+      "componentKey": null,
+      "assetType": "component_set",
+      "variantCount": 5,
+      "axes": { "State": ["Default", "Filled", "Focus", "Invalid", "Disabled"] },
+      "dependsOn": [],
+      "generatedAt": "2026-11-14",
+      "note": "Hand-generated through the write bridge from Input.module.css. The 240 width is a canvas choice with no counterpart in code. `Invalid` comes from a surrounding Field in code, not from a prop of Input. No text property: the text is an instance override. 0 unbound values at generation."
+    },
+    "Combobox": {
+      "source": "main",
+      "codePath": "packages/react/src/combobox",
+      "pageId": "41:3871",
+      "componentSetId": "41:4281",
+      "componentId": null,
+      "componentKey": null,
+      "assetType": "component_set",
+      "variantCount": 5,
+      "axes": { "State": ["Default", "Filled", "Focus", "Open", "Disabled"] },
+      "dependsOn": [],
+      "generatedAt": "2026-11-14",
+      "note": "Hand-generated through the write bridge from Combobox.module.css. One code component is three Figma assets on the same page: this set (Label, InputGroup, Input, Clear, Trigger), the set `Combobox / Item` (41:4204; axes Selected false|true and State Default|Highlighted|Disabled; 6 variants) and the component `Combobox / Popup` (41:4205), which `State=Open` instances. Non-variant properties: Label (boolean), Label text. Instances icon/x, icon/caret-down, icon/check. The 240 width and the 4 gap between field and popup are canvas choices. Parts with no styles in code (Group, GroupLabel, Chips, Chip, ChipRemove, Arrow, Status, Separator, Backdrop) are not drawn. 0 unbound values at generation."
+    }
+  },
+  "icons": {
+    "Phosphor": {
+      "source": "main",
+      "codePath": null,
+      "pageId": "41:3872",
+      "componentSetId": null,
+      "componentId": null,
+      "componentKey": null,
+      "assetType": "component",
+      "variantCount": null,
+      "generatedAt": "2026-11-14",
+      "note": "Five separate components, not one set: icon/plus (41:3881), icon/arrow-right (41:3886), icon/x (41:3891), icon/caret-down (41:3896), icon/check (41:3901). Each is the bold-weight path from @phosphor-icons/react 2.1.10 on its 256 grid, scaled to 16, with the fill bound to text/primary. `codePath` is null because the icons come from a dependency, not from this repo (ADR 0010)."
+    }
+  }
 }

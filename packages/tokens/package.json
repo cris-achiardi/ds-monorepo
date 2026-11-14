@@ -3,5 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "Design tokens, authored as DTCG 2025.10 JSON. No build yet."
+  "description": "Design tokens, authored as DTCG 2025.10 JSON and built to one stylesheet of CSS custom properties.",
+  "exports": {
+    "./tokens.css": "./build/tokens.css"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  }
 }
