@@ -33,8 +33,8 @@ describe how **this repository** is organised and both are still mechanized here
   (`pnpm design-index:check`).
 
 The template's other records governed its contract engine, which was not carried over, so they
-were left behind. Every decision about the React library and the token system is still to be made,
-and gets its own record here when it is.
+were left behind. Decisions about the React library start at **0003**. Every decision about the
+token system is still to be made, and gets its own record here when it is.
 
 > **The table below is generated** by `pnpm adr-index` from the records themselves — the number from
 > the filename, the title from the H1, the status from each record's `Status:` line. Do not edit it
@@ -47,6 +47,9 @@ and gets its own record here when it is.
 | -------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | -------- |
 | [0001](./0001-every-layer-is-self-describing.md)                                       | Every layer is self-describing, and context is pulled rather than pushed                        | Accepted |
 | [0002](./0002-design-guidelines-live-in-docs-design-as-principles-agents-can-check.md) | Design guidelines live in `docs/design` as principles an agent can check, not recipes it copies | Draft    |
+| [0003](./0003-the-library-re-exports-base-ui-entry-points-unchanged.md)                | `@ds/react` depends on `@base-ui/react` and re-exports each component entry point unchanged     | Draft    |
+| [0004](./0004-component-styles-are-written-as-css-modules.md)                          | Component styles are written as CSS Modules                                                     | Draft    |
+| [0005](./0005-one-folder-per-component-named-after-its-base-ui-entry-point.md)         | One folder per component, named after its Base UI entry point                                   | Draft    |
 
 <!-- adr-index:end -->
 

@@ -18,13 +18,14 @@ descend into a module only when you are in its territory.
 
 ## What this is
 
-A **design-system monorepo at its starting state**: governance, documentation layers, Figma wiring,
-CI and tooling are in place, and there are **no components and no tokens yet**.
+A **design-system monorepo at an early state**: governance, documentation layers, Figma wiring, CI
+and tooling are in place. The component library **re-exports every Base UI component unstyled**, and
+there are **no tokens yet**.
 
 ```
-packages/react/    @ds/react  — React component library. Empty barrel. Will be built on Base UI
+packages/react/    @ds/react  — React component library. Base UI re-exported unstyled, one folder each
 packages/tokens/   @ds/tokens — design tokens. Bare shell: nothing about the system is decided
-apps/storybook/    storybook-web — preview app, zero stories, globs them from packages/react
+apps/storybook/    storybook-web — preview app, globs one bare story per component from packages/react
 docs/research/     pre-decision: what is measurably true
 docs/ADR/          post-decision: what we decided and why
 docs/design/       design direction: how a screen should look, one record per concern
@@ -34,12 +35,14 @@ docs/documentation/ plain-language explanations for designers
 scripts/           repo-wide gates, generators and the branding codemod
 ```
 
-Both packages are empty **on purpose**, and their READMEs list what is undecided:
-[`packages/react/README.md`](./packages/react/README.md) and
+`@ds/tokens` is empty **on purpose** and `@ds/react` has no styles **on purpose**; their READMEs
+list what is undecided: [`packages/react/README.md`](./packages/react/README.md) and
 [`packages/tokens/README.md`](./packages/tokens/README.md). Two constraints bind work there:
 
-- **Base UI is the intended behaviour layer for `@ds/react` and is not installed.** Do not add it,
-  or any other runtime dependency, without being asked.
+- **Base UI is the behaviour layer for `@ds/react`, and each component is a pass-through until it is
+  deliberately styled** ([ADR 0003](./docs/ADR/0003-the-library-re-exports-base-ui-entry-points-unchanged.md)).
+  Do not add another runtime dependency, placeholder styles, or props of our own without being
+  asked.
 - **Do not invent tokens, token tiers, naming rules or a build pipeline.** The token system is
   authored from scratch by its owner; an invented one looks authoritative and nobody re-checks it.
 
@@ -62,7 +65,7 @@ belongs in an ADR.
 ## Branding
 
 The repo is generic for now (`@ds/*`, `--ds-*`, `data-ds-*`). It gets branded **once**, before
-components exist:
+anything is styled:
 
 ```bash
 pnpm init-ds <name> --dry   # inspect

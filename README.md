@@ -1,8 +1,8 @@
 # Design system monorepo
 
-A design-system monorepo at its starting state. Governance, documentation layers, Figma wiring, CI
-and tooling are in place; **the React library and the token system are empty and will be built from
-scratch.**
+A design-system monorepo at an early state. Governance, documentation layers, Figma wiring, CI and
+tooling are in place. **The React library re-exports every Base UI component with no styles of its
+own, and the token system is empty and will be built from scratch.**
 
 Scaffolded from [`weave-ds-template`](https://github.com/cris-achiardi/weave-ds-template), without
 its contract engine and multi-framework backends.
@@ -12,10 +12,10 @@ its contract engine and multi-framework backends.
 ```bash
 pnpm install
 pnpm verify                # every gate
-pnpm dev:storybook         # http://localhost:6006 — no stories yet
+pnpm dev:storybook         # http://localhost:6006 — one unstyled story per component
 ```
 
-The repo is generic for now (`@ds/*`, `--ds-*`). Brand it once, before components exist:
+The repo is generic for now (`@ds/*`, `--ds-*`). Brand it once, before anything is styled:
 
 ```bash
 pnpm init-ds <name> --dry  # see what moves
@@ -27,9 +27,9 @@ pnpm install               # workspace links move with the scope
 
 |                      |                                                                               |
 | -------------------- | ----------------------------------------------------------------------------- |
-| `packages/react`     | `@ds/react` — empty barrel. Hand-written React on Base UI (not installed)     |
+| `packages/react`     | `@ds/react` — every Base UI component, re-exported unstyled                   |
 | `packages/tokens`    | `@ds/tokens` — bare shell. Format, tiers, naming and build are undecided      |
-| `apps/storybook`     | `storybook-web` — configured, zero stories                                    |
+| `apps/storybook`     | `storybook-web` — one bare story per component                                |
 | `docs/ADR`           | Decision records, with a generated index                                      |
 | `docs/research`      | Pre-decision space: what is measurably true, ending in open questions         |
 | `docs/design`        | Design direction: one record per concern — principles, checks, open questions |
